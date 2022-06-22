@@ -1,0 +1,7 @@
+@use "../modules/mixins";
+
+.chars-list {
+    @include mixins.flex();
+    gap: 20px;
+    max-width: 100%;
+}

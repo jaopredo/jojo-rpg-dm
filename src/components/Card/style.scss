@@ -1,0 +1,35 @@
+@use "../../modules/mixins";
+
+.card-container {
+    @include mixins.flex();
+    height: 100%;
+
+    figure {
+        height: 100%;
+        @include mixins.flex($dir: column);
+    }
+    figcaption {
+        @include mixins.flex($dir: column);
+        height: 30px;
+        padding: 5px;
+        font-weight: bold;
+        box-shadow: 3px 3px 7px #000000a4,
+                    -3px -3px 7px #d4d4d4a4;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &:hover .profile-icon {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+    &:active .profile-icon {
+        transform: scale(.9);
+    }
+}
+
+.profile-icon {
+    font-size: 4vw;
+    transition: transform 500ms;
+}

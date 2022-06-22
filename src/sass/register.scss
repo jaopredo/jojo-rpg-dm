@@ -1,0 +1,86 @@
+@use 'sass:color';
+
+.logo-container {
+    width: 200px;
+    position: absolute;
+    top: -20px;
+    right: 63px;
+
+    h2 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: rgb(70, 70, 70);
+        background: #0000;
+        text-align: center;
+        font-size: 45pt;
+        top: -20px;
+    }
+}
+
+#fens-logo {
+    width: 100%;
+}
+
+
+/* AJEITANDO O GRID DOS DOIS FORMULÁRIOS */
+.char-register {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 50vh 4vh auto 15vh;
+    grid-template-areas:
+        "basic ."
+        "attr ."
+        "attr specs"
+        "button button";
+}
+
+.stand-register {
+    @extend .char-register;
+    grid-template-rows: 35vh 8vh auto 60vh 15vh;
+    grid-template-areas:
+        "basic ."
+        "attr ."
+        "attr substand"
+        "abilitys substand"
+        "button button";
+}
+
+.name {
+    font-size: 2.8em !important;
+    width: 80%;
+}
+
+$button-color: #494949;
+$hover-value: -20;
+$active-value: -40;
+.submit-button {
+    font-size: 1.3em;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: $button-color;
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 500ms, transform 500ms;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: color.adjust(
+            $button-color,
+            $red: $hover-value,
+            $green: $hover-value,
+            $blue: $hover-value,
+        );
+        transform: scale(1.1);
+    }
+    &:active {
+        background-color: color.adjust(
+            $button-color,
+            $red: $active-value,
+            $green: $active-value,
+            $blue: $active-value,
+        );
+    }
+}
