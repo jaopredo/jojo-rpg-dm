@@ -205,7 +205,7 @@ function LoggedStand({
             </div>
             <button className='roll-button' onClick={() => handleBarrageClick('stand')}>BARRAGEM</button>
             <div className='abilitys'>
-                {React.Children.toArray(Object.keys(standState?.abilitys).map(
+                {React.Children.toArray(Object.keys(standState?.abilitys ?? {}).map(
                     name => <DoneHab title={handleHabTitle(name)} infos={standState.abilitys[name]} rollDice={rollDice} />
                 ))}
             </div>

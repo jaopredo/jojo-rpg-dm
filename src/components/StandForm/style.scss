@@ -1,0 +1,29 @@
+@use '../../modules/colors' as *;
+@use '../../modules/mixins';
+
+#substand-fieldset {
+    grid-area: substand;
+    padding: 20px;
+}
+
+#abilitys-fieldset {
+    @include mixins.flex($dir: row);
+    gap: 10px;
+    
+    padding-top: 100px;
+
+    grid-area: abilitys;
+}
+
+$normal-font-size: 1.2em;
+
+h4 {
+    background: $title-bg;
+    text-align: center;
+    width: 100%;
+    display: block;
+    color: white;
+    padding: 5px;
+    font-size: 1.4em;
+    text-align: center;
+}

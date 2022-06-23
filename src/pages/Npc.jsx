@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 /* COMPONENTS */
 import LoggedChar from '../components/LoggedChar';
@@ -20,8 +21,21 @@ function Npc({ cookies }) {
     const [ actualLife, setActualLife ] = useState();
     const [ actualMentalEnergy, setActualMentalEnergy ] = useState();
     const [ actualDA, setActualDA ] = useState();
-
+    
     useEffect(() => {
+        async function fetchData() {
+            await axios.get(`${process.env.REACT_APP_API_URL}/dm/stand`, {
+                headers: { authorization: `JOJO ${process.env.REACT_APP_DM_TOKEN}` },
+                params: { id: cookies.npcchar._id }
+            }).then(resp => setStandState(resp.data))
+
+            await axios.get(`${process.env.REACT_APP_API_URL}/dm/substand`, {
+                headers: { authorization: `JOJO ${process.env.REACT_APP_DM_TOKEN}` },
+                params: { id: cookies.npcchar._id }
+            }).then(resp => setSubStandState(resp.data))
+        }
+
+        fetchData();
         setCharState(cookies.npcchar)
     }, [])
 
@@ -29,7 +43,7 @@ function Npc({ cookies }) {
         setActualLife(charState?.combat.life);
         setActualMentalEnergy(charState?.combat.mentalEnergy);
         setActualDA(charState?.combat?.da);
-    }, [ charState ])
+    }, [ charState, standState ])
 
     const [showStand, setShowStand] = useState(false);
     const [showChar, setShowChar] = useState(true);
@@ -40,10 +54,10 @@ function Npc({ cookies }) {
                 setShowChar(true);
                 setShowStand(false)
             }}>PERSONAGEM</li>
-            <li onClick={() => {
+            {!!standState && <li onClick={() => {
                 setShowChar(false);
                 setShowStand(true);
-            }}>STAND</li>
+            }}>STAND</li>}
         </menu>
         {showChar && <LoggedChar
             charState={charState}
@@ -57,14 +71,14 @@ function Npc({ cookies }) {
             setRollingText={setRollingText}
             setRollConfigs={setRollConfigs}
         />}
-        {/* {showStand && <LoggedStand
+        {showStand && <LoggedStand
             standState={standState}
             subStandState={subStandState}
             setRolling={setRolling}
             setRollConfigs={setRollConfigs}
             setBarrageConfigs={setBarrageConfigs}
             setBarrage={setBarrage}
-        />} */}
+        />}
         { rolling && <DiceRoll rollConfigs={rollConfigs} setRolling={setRolling}>{rollingText}</DiceRoll> }
         { barrage && <Barragem barrageConfigs={barrageConfigs} setBarrage={setBarrage}/> }
     </>;

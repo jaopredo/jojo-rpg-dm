@@ -9,6 +9,9 @@ import './sass/register.scss';
 import Choose from './pages/Choose';
 import Logged from './pages/Logged';
 import Npc from './pages/Npc';
+import CharForm from './components/CharForm';
+import StandForm from './components/StandForm';
+import Registering from './pages/Registering';
 
 const Container = styled.div`
     border: 3px solid #272727;
@@ -26,8 +29,12 @@ const Container = styled.div`
 function App() {
     const [ cookies, setCookie ] = useCookies([
         "playerid",
+
+        "character",
+        "stand",
+        "substand",
+
         "npcchar",
-        "npcstand",
         "npcsubstand"
     ]);
 
@@ -36,6 +43,9 @@ function App() {
             <Route path='/' exact element={<Choose setCookie={setCookie}/>}/>
             <Route path='/player' element={<Logged playerId={cookies.playerid}/>}/>
             <Route path='/npc' element={<Npc cookies={cookies} />} />
+            <Route path='/creation/npc' element={<CharForm charCookies={cookies} setCharCookie={setCookie}/>} />
+            <Route path='/creation/stand' element={<StandForm standCookies={cookies} setStandCookie={setCookie} />} />
+            <Route path='/registering' element={<Registering cookies={cookies}/>} />
         </Routes>
     </Container>;
 }

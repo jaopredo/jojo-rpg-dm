@@ -1,35 +1,65 @@
+@use "sass:color";
+@use "../../modules/colors" as c;
 @use "../../modules/mixins";
 
 .card-container {
-    @include mixins.flex();
+    @include mixins.flex(space-between);
+    border: 1px solid black;
     height: 100%;
+    position: relative;
+    transition: box-shadow 500ms;
 
+    a { height: 100%; }
+    
     figure {
         height: 100%;
         @include mixins.flex($dir: column);
+    }
+    .svg-container {
+        @include mixins.flex();
+        height: 100%;
+        width: 100%;
+        box-shadow: inset 19px 19px 38px #d9d9d9,
+            inset -19px -19px 38px #ffffff;
     }
     figcaption {
         @include mixins.flex($dir: column);
         height: 30px;
         padding: 5px;
+        width: 100%;
         font-weight: bold;
-        box-shadow: 3px 3px 7px #000000a4,
-                    -3px -3px 7px #d4d4d4a4;
-        &:hover {
-            cursor: pointer;
-        }
+        box-shadow: -3px -3px 7px #d4d4d4a4;
     }
 
-    &:hover .profile-icon {
-        cursor: pointer;
-        transform: scale(1.1);
-    }
-    &:active .profile-icon {
-        transform: scale(.9);
+    &:hover {
+        box-shadow: 3px 3px 10px #00000093;
+
+        .trash-can { opacity: 1 }
     }
 }
 
 .profile-icon {
     font-size: 4vw;
     transition: transform 500ms;
+}
+
+.trash-can {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.3em;
+    opacity: 0;
+    transition: color 500ms, opacity 300ms;
+
+    &:hover {
+        color: c.$trash-can;
+    }
+    &:active {
+        color: color.adjust(
+            c.$trash-can,
+            $red: -40,
+            $green: -40,
+            $blue: -40,
+        )
+    }
 }
