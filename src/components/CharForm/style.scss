@@ -226,7 +226,7 @@ $button-color: rgb(80, 80, 80);
 $nhover: -20;
 $nactive: -40;
 .button-container {
-    @include mixins.flex();
+    @include mixins.flex($dir: column);
     grid-area: button;
     // background: yellow;
 

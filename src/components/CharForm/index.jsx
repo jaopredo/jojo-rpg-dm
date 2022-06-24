@@ -199,6 +199,10 @@ function CharForm({ charCookies, setCharCookie }) {
             </table>
         </fieldset>
         <div className='button-container'>
+            <div>
+                <label htmlFor="havestand">Possui stand?: </label>
+                <input type="checkbox" id="havestand" onClick={() => setHaveStand(!haveStand)} />
+            </div>
             <button className='submit-button' type='submit'>ENVIAR</button>
         </div>
     </form>;

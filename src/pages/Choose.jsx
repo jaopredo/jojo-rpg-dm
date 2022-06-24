@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 /* COMPONENTS */
 import colors from '../modules/colors';
@@ -65,6 +66,7 @@ const Choice = styled.button`
 `;
 
 function Choose({ setCookie }) {
+    const navigate = useNavigate();
     const [ playersState, setPlayersState ] = useState();
     const [ npcState, setNpcState ] = useState();
 
@@ -102,6 +104,8 @@ function Choose({ setCookie }) {
                 params: { id: npcId }
             })
         }
+
+        navigate(0);
     }
 
     return (

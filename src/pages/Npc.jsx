@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 /* COMPONENTS */
 import LoggedChar from '../components/LoggedChar';
 import LoggedStand from "../components/LoggedStand";
 import { DiceRoll, Barragem } from "../components/DiceRoll";
+import { BsFillDoorOpenFill } from 'react-icons/bs';
 
 function Npc({ cookies }) {
+    const navigate = useNavigate();
+
     const [ charState, setCharState ] = useState();
     const [ standState, setStandState ] = useState();
     const [ subStandState, setSubStandState ] = useState();
@@ -50,6 +54,9 @@ function Npc({ cookies }) {
 
     return <>
         <menu className="generic-list logged-menu">
+            <li>
+                <BsFillDoorOpenFill onClick={() => navigate('/')} />
+            </li>
             <li onClick={() => {
                 setShowChar(true);
                 setShowStand(false)

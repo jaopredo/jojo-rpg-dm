@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 /* CSS */
 import '../sass/logged.scss';
@@ -8,8 +9,11 @@ import '../sass/logged.scss';
 import LoggedChar from '../components/LoggedChar';
 import LoggedStand from "../components/LoggedStand";
 import { DiceRoll, Barragem } from "../components/DiceRoll";
+import { BsFillDoorOpenFill } from 'react-icons/bs';
 
 function Logged({ playerId }) {
+    const navigate = useNavigate();
+
     const [ charState, setCharState ] = useState();
     const [ standState, setStandState ] = useState();
     const [ subStandState, setSubStandState ] = useState();
@@ -51,6 +55,9 @@ function Logged({ playerId }) {
 
     return <>
         <menu className="generic-list logged-menu">
+            <li>
+                <BsFillDoorOpenFill onClick={() => navigate('/')} />
+            </li>
             <li onClick={() => {
                 setShowChar(true);
                 setShowStand(false)
