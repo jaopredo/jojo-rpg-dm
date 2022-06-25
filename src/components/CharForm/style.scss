@@ -220,6 +220,14 @@ fieldset {
     }
 }
 
+#history-field {
+    grid-area: history;
+
+    textarea {
+        height: 40vh
+    }
+}
+
 
 /* BOTÃO */
 $button-color: rgb(80, 80, 80);

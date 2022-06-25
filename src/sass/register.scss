@@ -28,11 +28,12 @@
     width: 100%;
     display: grid;
     grid-template-columns: 75% 25%;
-    grid-template-rows: 50vh 4vh auto 15vh;
+    grid-template-rows: 50vh 4vh auto auto 15vh;
     grid-template-areas:
         "basic ."
         "attr ."
         "attr specs"
+        "history specs"
         "button button";
 }
 

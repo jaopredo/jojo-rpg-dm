@@ -387,7 +387,10 @@ function LoggedChar({
             </div>
         </div>
         <div id="level-area">
-            <h2>Level</h2>
+            <h2>História</h2>
+            <p className='history-paragraph'>
+                {charState?.basic.history}
+            </p>
         </div>
         <div id="dices-area">
             <h2>Dados</h2>

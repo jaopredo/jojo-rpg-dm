@@ -198,6 +198,12 @@ function CharForm({ charCookies, setCharCookie }) {
                 ))}
             </table>
         </fieldset>
+        <fieldset id='history-field'>
+            <h3>História</h3>
+            <textarea id='history' {...register('basic.history', {
+                required: true,
+            })}></textarea>
+        </fieldset>
         <div className='button-container'>
             <div>
                 <label htmlFor="havestand">Possui stand?: </label>
