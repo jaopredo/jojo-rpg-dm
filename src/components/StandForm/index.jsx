@@ -10,15 +10,10 @@ import { Habilidade } from '../Habilidade';
 import SubStandForm from '../SubStandForm';
 
 
-function StandForm({ standCookies, setStandCookie }) {
+function StandForm({ standCookies, setStandCookie, haveSubStand, setHaveSubStand }) {
     const navigate = useNavigate();
 
-    const { register, handleSubmit } = useForm({
-        defaultValues: {
-            stand: standCookies.stand,
-            substand: standCookies.substand
-        }
-    });
+    const { register, handleSubmit } = useForm();
 
     const attrInputInfos = [
         { label: 'Força', id: 'strengh' },
@@ -43,7 +38,9 @@ function StandForm({ standCookies, setStandCookie }) {
     // Alterando as habilidades
     const handlePDChange = e => {
         const { value } = e.target;
-        setAbilitys(pdAbilitys[value]);
+        setAbilitys(pdAbilitys[Number(value)]);
+        
+        Number(value) === 5?setHaveSubStand(true):setHaveSubStand(false)
     }
 
     const onSubmit = data => {

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components'
 import { useCookies } from 'react-cookie';
@@ -38,14 +39,31 @@ function App() {
         "npcsubstand"
     ]);
 
+    const [ haveStand, setHaveStand ] = useState(false);
+    const [ haveSubStand, setHaveSubStand ] = useState(false);
+
     return <Container>
         <Routes>
             <Route path='/' exact element={<Choose setCookie={setCookie}/>}/>
             <Route path='/player' element={<Logged playerId={cookies.playerid}/>}/>
             <Route path='/npc' element={<Npc cookies={cookies} />} />
-            <Route path='/creation/npc' element={<CharForm charCookies={cookies} setCharCookie={setCookie}/>} />
-            <Route path='/creation/stand' element={<StandForm standCookies={cookies} setStandCookie={setCookie} />} />
-            <Route path='/registering' element={<Registering cookies={cookies}/>} />
+            <Route path='/creation/npc' element={<CharForm
+                charCookies={cookies}
+                setCharCookie={setCookie}
+                haveStand={haveStand}
+                setHaveStand={setHaveStand}
+            />} />
+            <Route path='/creation/stand' element={<StandForm
+                standCookies={cookies}
+                setStandCookie={setCookie}
+                haveSubStand={haveSubStand}
+                setHaveSubStand={setHaveSubStand}
+            />} />
+            <Route path='/registering' element={<Registering
+                cookies={cookies}
+                haveStand={haveStand}
+                haveSubStand={haveSubStand}
+            />} />
         </Routes>
     </Container>;
 }

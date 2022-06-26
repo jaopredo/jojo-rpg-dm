@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 // import { Container } from './styles';
 
-function Registering({ cookies }) {
+function Registering({ cookies, haveStand, haveSubStand }) {
     const navigate = useNavigate();
     async function fetchData() {
         await axios.post(`${process.env.REACT_APP_API_URL}/npc`, {
             npc: cookies.character,
-            stand: cookies.stand,
-            substand: cookies.substand,
+            stand: haveStand?cookies.stand:undefined,
+            substand: haveSubStand?cookies.substand:undefined,
         }, {
             headers: { authorization: `JOJO ${process.env.REACT_APP_DM_TOKEN}` },
         }).then(() => navigate('/'))

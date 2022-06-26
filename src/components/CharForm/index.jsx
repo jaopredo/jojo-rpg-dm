@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 /* CSS */
 import './style.scss';
 
-function CharForm({ charCookies, setCharCookie }) {
+function CharForm({ charCookies, setCharCookie, haveStand, setHaveStand }) {
+
+    useEffect(() => {
+        setHaveStand(false)  // Sempre é não por padrão
+    }, [])
+
     const navigate = useNavigate();
-    const [ haveStand, setHaveStand ] = useState(false)
     const attrMaxInfos = {
         human: 10,
         rockman: 10,
