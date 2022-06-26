@@ -26,7 +26,7 @@ function CharForm({ charCookies, setCharCookie }) {
     const [ raceAdvantages, setRaceAdvantages ] = useState(raceAdvs.human);
 
     // True ou falso para animação do erro
-    const { register, handleSubmit } = useForm({ defaultValues: charCookies });
+    const { register, handleSubmit } = useForm({ defaultValues: charCookies.character });
 
     /* FUNÇÃO QUE LIDA COM OS DADOS */
     const onSubmit = data => {
