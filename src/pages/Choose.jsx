@@ -110,7 +110,6 @@ function Choose({ setCookie }) {
 
     return (
         <>
-            <Header>JOJO'S RPG</Header>
             <SubContainer>
                 <div>
                     <h2>Players</h2>
@@ -131,10 +130,10 @@ function Choose({ setCookie }) {
                     </ul>
                 </div>
                 <div>
-                    <h2>NPC's</h2>
+                    <h2>FENS</h2>
                     <ul className='generic-list chars-list'>
                         {React.Children.toArray(npcState?.map(
-                            npcs => <Card
+                            npcs => npcs.npcType === 'fens' && <Card
                                 to='/npc'
                                 onClick={() => setCookie('npcchar', npcs)}
                                 title={npcs.basic.name}
@@ -146,13 +145,67 @@ function Choose({ setCookie }) {
                                 }}
                             />
                         ))}
-                        <Link to='/creation/npc'>
-                            <li className='card-container plus-container'>
-                                <BsFillPersonPlusFill className='plus-icon'/>
-                            </li>
-                        </Link>
                     </ul>
                 </div>
+                <div>
+                    <h2>MÁFIA</h2>
+                    <ul className='generic-list chars-list'>
+                        {React.Children.toArray(npcState?.map(
+                            npcs => npcs.npcType === 'mafia' && <Card
+                                to='/npc'
+                                onClick={() => setCookie('npcchar', npcs)}
+                                title={npcs.basic.name}
+                                onTrashClick={() => {
+                                    setShowDeleteConfirm(true)
+                                    setDelPlayer(false)
+                                    setDelNpc(true)
+                                    setNpcId(npcs._id)
+                                }}
+                            />
+                        ))}
+                    </ul>
+                </div>
+                <div>
+                    <h2>BOSS</h2>
+                    <ul className='generic-list chars-list'>
+                        {React.Children.toArray(npcState?.map(
+                            npcs => npcs.npcType === 'boss' && <Card
+                                to='/npc'
+                                onClick={() => setCookie('npcchar', npcs)}
+                                title={npcs.basic.name}
+                                onTrashClick={() => {
+                                    setShowDeleteConfirm(true)
+                                    setDelPlayer(false)
+                                    setDelNpc(true)
+                                    setNpcId(npcs._id)
+                                }}
+                            />
+                        ))}
+                    </ul>
+                </div>
+                <div>
+                    <h2>GENÉRICO</h2>
+                    <ul className='generic-list chars-list'>
+                        {React.Children.toArray(npcState?.map(
+                            npcs => npcs.npcType === 'generic' && <Card
+                                to='/npc'
+                                onClick={() => setCookie('npcchar', npcs)}
+                                title={npcs.basic.name}
+                                onTrashClick={() => {
+                                    setShowDeleteConfirm(true)
+                                    setDelPlayer(false)
+                                    setDelNpc(true)
+                                    setNpcId(npcs._id)
+                                }}
+                            />
+                        ))}
+                    </ul>
+                </div>
+                <Link to='/creation/npc'>
+                    <li className='card-container plus-container'>
+                        <BsFillPersonPlusFill className='plus-icon'/>
+                    </li>
+                </Link>
             </SubContainer>
             {showDeleteConfirm && <DelContainer>
                 <h1>TEM CERTEZA DISSO?</h1>

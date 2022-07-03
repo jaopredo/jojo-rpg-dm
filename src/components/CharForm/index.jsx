@@ -160,6 +160,15 @@ function CharForm({ charCookies, setCharCookie, haveStand, setHaveStand }) {
                     <label htmlFor='occupation'>Profissão: </label>
                     <input id='occupation' type="text" {...register('basic.occupation', { required: true })}/>
                 </li>
+                <li>
+                    <label htmlFor="npcType">Tipo do NPC: </label>
+                    <select id="npcType" {...register('npcType', { required: true })}>
+                        <option value="mafia">MÁFIA</option>
+                        <option value="boss">BOSS</option>
+                        <option defaultChecked value="fens">FENS</option>
+                        <option value="generic">GENÉRICO</option>
+                    </select>
+                </li>
             </ul>
         </fieldset>
         <fieldset id='attr-fieldset'>
