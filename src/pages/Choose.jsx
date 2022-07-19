@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 /* COMPONENTS */
 import colors from '../modules/colors';
 import { BsFillPersonPlusFill } from 'react-icons/bs';
-import Header from '../components/Header/';
 import SubContainer from '../components/SubContainer';
 import Card from '../components/Card';
 
